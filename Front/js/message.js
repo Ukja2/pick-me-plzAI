@@ -1,7 +1,13 @@
+import { setupModeSwitching, getCurrentMode } from "./modeManager.js";
+import { sendMessageToServer } from "./apiService.js";
+
+
 // 페이지가 로딩되면 실행됨
 // DOMContentLoaded 이벤트는 HTML 문서가 완전히 로드된 후에 발생
 window.addEventListener('DOMContentLoaded', () => {
     
+    setupModeSwitching(); // 모드 버튼 클릭 시 모드 변경
+
     // 챗봇 인사 메시지 보여주기
     addMessage("안녕하세요! 무엇을 도와드릴까요? 😊", "bot");
 });
@@ -27,6 +33,8 @@ function sendMessage(){
         addMessage(userMessage, "user");
         userInput.value = ""; // 입력창 초기화  
     }
+
+    const currentMode = getCurrentMode();
 
     // 백엔드에 메시지 전송
     sendMessageToServer(userMessage);  
