@@ -10,6 +10,7 @@ export function sendMessageToServer(userMessage, mode) {
         mode: mode
       })
     })
-    .then(response => response.json()); 
+    .then(response => response.json()); // 백엔드로부터 받은 JSON 문자열을 JS객체로 변환
+    
   }
   

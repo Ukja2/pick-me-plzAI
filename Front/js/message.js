@@ -36,8 +36,15 @@ function sendMessage(){
 
     const currentMode = getCurrentMode();
 
-    // 백엔드에 메시지 전송
-    sendMessageToServer(userMessage);  
+    // 백엔드에 메시지 전송 (리팩토링)
+    sendMessageToServer(userMessage, currentMode)
+        .then(data => {
+            addMessage(data.response, "bot"); // GPT 응답 출력
+        })
+        .catch(error => {
+            console.error("GPT 응답 에러:", error);
+            addMessage("⚠️ 서버에서 응답을 받지 못했습니다.", "bot"); // 에러 시 메시지 표시
+        });
 }
 
 // 버튼 클릭 시 메시지 전송
