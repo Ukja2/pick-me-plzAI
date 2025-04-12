@@ -184,3 +184,38 @@ button:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 } 
+
+
+
+.message {
+    max-width: 60%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin: 5px;
+    font-size: 16px;
+    line-height: 1.4;
+    word-break: break-word; /* max-width를 초과하는 단어를 줄바꿈 */
+  }
+  
+  /* 사용자 메시지 (오른쪽 말풍선) */
+  .user {
+    background-color: #bcbcbc;
+    align-self: flex-end;
+    text-align: right;
+    border-bottom-right-radius: 0; /* 오른쪽 아래 모서리 각지게 */
+  }
+  
+  /* 봇 메시지 (왼쪽 말풍선) */
+  .bot {
+    background-color: #3d3d3d;
+    align-self: flex-start;
+    text-align: left;
+    border-bottom-left-radius: 0; /* 왼쪽 아래 모서리 각지게 */
+  }
+  
+  /* 전체 채팅 메시지를 세로로 정렬되게 */
+  .chat-messages {
+    display: flex;
+    flex-direction: column;
+  }
+  
