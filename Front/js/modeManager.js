@@ -1,3 +1,4 @@
+import { clearChat } from "./chatClear.js";
 // 기본 모드 설정
 let currentMode = "beginner";
 
@@ -16,9 +17,13 @@ export function setupModeSwitching() {
                 currentMode = "idea";
             } else if (button.textContent.includes("기업 맞춤 수정")) {
                 currentMode = "custom";
-}
+            }
+
+            clearChat();
         })
+        
     });
+
 }
 
 // 현재 모드를 가져오는 함수
