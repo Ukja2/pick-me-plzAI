@@ -132,7 +132,7 @@ public void resetConversation(String mode) {
 ---
 
 ## 트러블슈팅
-### 1. GPT 응답 파싱 관련 문제
+### GPT 응답 파싱 관련 문제
 **문제상황**
 
 개발 초반에 OpenAI GPT API로부터 응답을 받은 후, 사용자에게 보여줄 "content" 값만 추출하려고 했지만, 초기에는 응답 구조를 명확히 이해하지 못해 아래와 같은 문제가 발생했습니다.
