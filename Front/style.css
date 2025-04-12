@@ -88,15 +88,25 @@ h1 {
     color: #ffffff;
 }
 
-/* 사이드바 네비게이션 */
-.sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+/* 섹션 그룹 (필수 항목 / 플러스 항목) */
+.nav-section {
+    margin-bottom: 2rem;
+}
+
+/* 섹션 타이틀  */
+.nav-title {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #888;
+    padding: 0.5rem 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #2a2a2a;
 }
 
 /* 네비게이션 카테고리 목록*/
 .nav-item {
+    width: 100%;
+    margin-bottom: 0.75rem;
     padding: 0.75rem 1rem;
     border: none;
     background: none;
@@ -193,7 +203,7 @@ button:hover {
     border-radius: 15px;
     margin: 5px;
     font-size: 16px;
-    line-height: 1.4;
+    line-height: 1.8;
     word-break: break-word; /* max-width를 초과하는 단어를 줄바꿈 */
   }
   
