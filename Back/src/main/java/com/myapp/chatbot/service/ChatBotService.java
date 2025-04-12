@@ -3,6 +3,8 @@ package com.myapp.chatbot.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -85,9 +87,15 @@ public class ChatBotService {
             // 예외 발생 시 콘솔에 에러 출력
             e.printStackTrace();
             // 사용자에게 보여줄 에러 메시지 반환
-            return "⚠️ GPT 응답 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
+            return " GPT 응답 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
         }
+
     }
 
 
+    // 초기화 메서드
+    public void resetConversation(String mode) {
+        conversationHistories.remove(mode);
+        System.out.println("[" + mode + "] 모드 대화 초기화됨");
+    }
 }

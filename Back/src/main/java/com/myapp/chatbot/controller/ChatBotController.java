@@ -2,6 +2,7 @@ package com.myapp.chatbot.controller;
 
 import com.myapp.chatbot.service.ChatBotService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -20,5 +21,11 @@ public class ChatBotController {
         String mode = request.get("mode"); // 현재 모드 상태 get
         String gptResponse = chatBotService.getChatResponse(userMessage, mode); // GPT에게 질문하고 응답 받음
         return Map.of("response", gptResponse); // 결과를 다시 사용자에게 JSON으로 반환
+    }
+
+    @PostMapping("/reset")
+    public ResponseEntity<String> resetConversation(@RequestParam String mode) {
+        chatBotService.resetConversation(mode);
+        return ResponseEntity.ok("✅" + mode + " 모드의 대화가 초기화되었습니다.");
     }
 }
