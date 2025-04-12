@@ -199,11 +199,11 @@ button:hover {
 
 .message {
     max-width: 60%;
-    padding: 10px 15px;
+    padding: 10px 25px;
     border-radius: 15px;
     margin: 5px;
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 2;
     word-break: break-word; /* max-width를 초과하는 단어를 줄바꿈 */
   }
   

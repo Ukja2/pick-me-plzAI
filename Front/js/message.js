@@ -9,7 +9,19 @@ window.addEventListener('DOMContentLoaded', () => {
     setupModeSwitching(); // 모드 버튼 클릭 시 모드 변경
 
     // 챗봇 인사 메시지 보여주기
-    addMessage("안녕하세요! 무엇을 도와드릴까요? 😊", "bot");
+    addMessage(`
+📝 **자기소개서를 처음부터 함께 써볼게요!**  
+        글쓰기가 어렵게 느껴지더라도 괜찮아요.  
+        제가 하나씩 도와드릴 테니까 부담 없이 시작해요 😊 
+---
+    
+**먼저, 아래 질문들 중 하나를 골라 답해주셔도 좋아요:**                
+    ✅  어떤 직무에 지원하고 계신가요?  
+    ✅ 나의 강점은 뭐라고 생각하나요?  
+    ✅ 특별한 경험이 있었나요?  
+    ✅ 입사 후 어떤 목표가 있으신가요?
+                
+함께 차근차근 문장으로 만들어봐요! ✍️`, "bot");
 });
 
 // 메시지를 화면에 추가 함수
@@ -19,6 +31,16 @@ export function addMessage(text, sender) {
     const messages = document.createElement("div"); 
     messages.classList.add("message", sender); // 클래스: message + bot 또는 user
     messages.textContent = text; // 메시지 내용 넣기
+
+    if (sender === "bot" && window.marked) {
+        marked.setOptions({
+            breaks: true,
+            gfm: true
+        });
+        messages.innerHTML = marked.parse(text);
+    } else {
+        messages.textContent = text;
+    }
 
     chatMessages.appendChild(messages); // 채팅창에 추가
     chatMessages.scrollTop = chatMessages.scrollHeight; // 자동으로 아래로 스크롤
