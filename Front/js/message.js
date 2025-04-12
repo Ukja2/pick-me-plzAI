@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // 메시지를 화면에 추가 함수
-function addMessage(text, sender) {
+export function addMessage(text, sender) {
     const chatMessages = document.getElementById("chat-messages"); // html에서 chat-messages채팅창
 
     const messages = document.createElement("div"); 

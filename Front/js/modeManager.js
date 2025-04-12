@@ -1,6 +1,8 @@
+import { addMessage } from "./message.js";
 import { clearChat } from "./chatClear.js";
+import { getModeIntroMessage } from "./welcomeText.js";
 // 기본 모드 설정
-let currentMode = "beginner";
+let currentMode = "full";
 
 // 모드 변경 함수
 export function setupModeSwitching() {
@@ -20,6 +22,8 @@ export function setupModeSwitching() {
             }
 
             clearChat();
+            const message = getModeIntroMessage(currentMode);
+            addMessage(message, "bot"); 
         })
         
     });
