@@ -26,7 +26,7 @@ AI의 도움으로 자기소개서를 더 쉽게, 더 똑똑하게 작성할 수
     <tr>
       <th style="text-align:center;">Frontend</th>
       <th style="text-align:center;">Backend</th>
-      <th style="text-align:center;">AI 연동</th>
+      <th style="text-align:center;">AI</th>
     </tr>
   </thead>
   <tbody>
