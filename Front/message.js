@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     addMessage("안녕하세요! 무엇을 도와드릴까요? 😊", "bot");
 });
 
-// 메시지를 화면에 추가하는 함수
+// 메시지를 화면에 추가 함수
 function addMessage(text, sender) {
     const chatMessages = document.getElementById("chat-messages"); // html에서 chat-messages채팅창
 
@@ -18,13 +18,25 @@ function addMessage(text, sender) {
     chatMessages.scrollTop = chatMessages.scrollHeight; // 자동으로 아래로 스크롤
 }
 
-// 전송 버튼 눌렀을 때 사용자 메시지 출력
-document.getElementById("send-button").addEventListener("click", () => {
-    const userInput = document.getElementById("user-input");
-    const userMessage = userInput.value.trim(); // 입력한 내용 가져오기 (양쪽 공백 제거)
+// 사용자 메시지 전송 함수
+function sendMessage(){
+    const userInput = document.getElementById("user-input"); // html에서 user-input
+    const userMessage = userInput.value.trim(); // 사용자가 입력한 메시지, 양쪽 끝 공백제거
 
-    if (userMessage !== "") {
-        addMessage(userMessage, "user");  // 화면에 유저 메시지 추가
-        userInput.value = "";  // 입력창 비우기
+    if (userMessage !== ""){
+        addMessage(userMessage, "user");
+        userInput.value = ""; // 입력창 초기화  
     }
+}
+
+// 버튼 클릭 시 메시지 전송
+document.getElementById("send-button").addEventListener("click", () => {
+    sendMessage(); // 메시지 전송
+});
+
+// 엔터 클릭 시 메시지 전송
+document.getElementById("user-input").addEventListener("keydown", (event) => {
+   if (event.key === "Enter") {
+       sendMessage(); // Enter 키로 메시지 전송
+   } 
 });
