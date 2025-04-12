@@ -27,16 +27,19 @@ function sendMessage(){
         addMessage(userMessage, "user");
         userInput.value = ""; // 입력창 초기화  
     }
+
+    // 백엔드에 메시지 전송
+    sendMessageToServer(userMessage);  
 }
 
 // 버튼 클릭 시 메시지 전송
-document.getElementById("send-button").addEventListener("click", () => {
+document.getElementById("send-button").addEventListener("click", (event) => {
     sendMessage(); // 메시지 전송
 });
 
 // 엔터 클릭 시 메시지 전송
-document.getElementById("user-input").addEventListener("keydown", (event) => {
-   if (event.key === "Enter") {
-       sendMessage(); // Enter 키로 메시지 전송
-   } 
+document.getElementById("user-input").addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        sendMessage();  // Enter 키로 메시지 전송
+    } 
 });

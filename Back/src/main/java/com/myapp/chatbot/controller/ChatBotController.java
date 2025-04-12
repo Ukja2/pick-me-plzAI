@@ -8,6 +8,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/chat")
+@CrossOrigin(origins = "http://127.0.0.1:5500")  // 여기서 CORS를 설정, 요청을 허용할 도메인 추가
 public class ChatBotController {
 
     @Autowired

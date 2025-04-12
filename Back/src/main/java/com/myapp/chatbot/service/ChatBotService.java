@@ -23,7 +23,8 @@ public class ChatBotService {
 
         requestBody.put("model", "gpt-3.5-turbo"); // 사용할 GPT 모델
         requestBody.put("messages", List.of( // 메시지 리스트 생성
-                Map.of("role", "system", "content", "You are a helpful assistant."),
+                Map.of("role", "system",
+                        "content", "너는 자기소개서 작성의 전문가야. 사용자가 제공하는 자기소개서 내용을 읽고, 그 내용이 더욱 강력하고 설득력 있게 보이도록 구체적인 피드백을 제공해줘.또한 각 항목을 어떻게 수정하면 더 좋은 자기소개서가 될지에 대한 가이드라인을 제공해."),
                 Map.of("role", "user", "content", userMessage) // 여기서 userMessage 사용됨!
         ));
         requestBody.put("max_tokens", 800); // 응답 최대 길이 설정

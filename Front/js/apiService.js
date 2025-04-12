@@ -10,7 +10,6 @@ function sendMessageToServer(userMessage) {
     .then(response => response.json())  // fetch 작업이 완료 후 서버 응답을 JSON 형식으로 처리
     .then(data => {
       // 서버로부터 받은 응답 처리
-      console.log('서버 응답:', data); // 그냥 디버깅용
       addMessage(data.response, "bot");  // data JSON 객체에서 'response' 속성의 값을 가져와서 addMessage 함수 호출 -> 즉 AI의 응답을 화면상에 출력
     })
     .catch(error => {
