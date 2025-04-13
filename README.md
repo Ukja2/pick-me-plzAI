@@ -2,6 +2,8 @@
 
 ![작동 화면](https://github.com/user-attachments/assets/bd7378e7-1055-4aee-996d-4d45b796aaf8)
 
+## 기획 배경
+
 고학년 대학생이나 취업을 준비하는 사람들은 자기소개서를 작성할 때 막막함을 많이 느낍니다.
 “무엇부터 써야 하지?”, “이 문장 이상한가?”, “어떤 경험을 써야 하지?”와 같은 고민들로 쉽게 시작하지 못하죠.
 
@@ -69,11 +71,11 @@ AI의 도움으로 자기소개서를 더 쉽게, 더 똑똑하게 작성할 수
 ```
 ---
 
-## 구현한 기능
+## 기능
 
 
 ### Frontend
-**1.GPT API에 사용자 메시지 전송 및 GPT 응답 출력**
+**1.Backend에 사용자 메시지 전송 및 GPT 응답 출력**
 ```
 // message.js
 sendMessageToServer(userMessage, currentMode)
@@ -82,7 +84,7 @@ sendMessageToServer(userMessage, currentMode)
   });
 ```
 
-사용자가 입력한 메시지를 fetch()로 서버에 전송하고, 받은 응답을 addMessage()로 채팅창에 출력하도록 구현했습니다. (클라이언트 -> 서버)
+사용자가 입력한 메시지를 fetch()로 서버에 전송하고, 받은 응답을 addMessage()로 채팅창에 출력하도록 구현했습니다. **(클라이언트 -> 서버)**
 
 
 
@@ -104,21 +106,23 @@ button.addEventListener("click", () => {
 
 ### Backend
 
-**1. 대화 히스토리 관리**
-```
-// ChatBotService.java
-private final Map<String, List<Map<String, String>>> conversationHistories = new HashMap<>();
-```
-대화를 누적 저장해서 GPT가 이전 맥락을 기억하며 응답하도록 했습니다. 또한 각 모드별로 해당 기능이 적용될 수 있도록 했습니다.
 
-**2. GPT 요청 및 응답 처리**
+**1. Front의 사용자 입력 데이터 JSON 구조 변환 후 요청처리 및 응답데이터 파싱 **
 ```
 // ChatBotService.java
 requestBody.put("messages", history); // 누적 대화 전송
 HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
 ResponseEntity<Map> response = restTemplate.exchange(API_URL, HttpMethod.POST, request, Map.class);
 ```
-프론트로 부터 전달받은 메시지를 GPT가 읽을 수 있는 구조로 변환 후 API에 전달한 다음, 받은 응답에서 content만 추출해 사용자에게 반환하도록 구현했습니다. (서버 -> 클라이언트)
+프론트로 부터 전달받은 메시지를 GPT가 읽을 수 있는 구조(`"model"`, `"messages"`, `"max_tokens"` 등을 포함한 JSON 형태) 로 변환 후 API에 전달한 다음, 받은 응답에서 `content`만 추출해 사용자에게 반환하도록 구현했습니다. **(서버 -> 클라이언트)**
+
+**2. 대화 히스토리 관리**
+```
+// ChatBotService.java
+private final Map<String, List<Map<String, String>>> conversationHistories = new HashMap<>();
+```
+새로운 HashMap 객체를 생성 후 이곳에 대화를 누적 저장해서 GPT가 이전 맥락을 기억하며 응답하도록 했습니다. 이는 각 모드별로 해당 기능이 적용될 수 있도록 했습니다.
+
 
 **3. 모드 변경 시 서버 측 대화 초기화**
 ```
