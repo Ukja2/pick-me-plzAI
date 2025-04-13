@@ -73,7 +73,7 @@ AI의 도움으로 자기소개서를 더 쉽게, 더 똑똑하게 작성할 수
 
 
 ### Frontend
-**1.사용자 메시지 전송 및 GPT 응답 출력**
+**1.GPT API에 사용자 메시지 전송 및 GPT 응답 출력**
 ```
 // message.js
 sendMessageToServer(userMessage, currentMode)
@@ -82,11 +82,11 @@ sendMessageToServer(userMessage, currentMode)
   });
 ```
 
-사용자가 입력한 메시지를 fetch()로 서버에 전송하고, 받은 응답을 addMessage()로 채팅창에 출력하도록 구현했습니다. (클라이언트와 서버간 연결)
+사용자가 입력한 메시지를 fetch()로 서버에 전송하고, 받은 응답을 addMessage()로 채팅창에 출력하도록 구현했습니다. (클라이언트 -> 서버)
 
 
 
-**2. 모드 전환 시 대화 초기화 + 환영 메시지 출력**
+**2. 좌측 모드 전환 시 기존 대화 초기화 + 환영 메시지 출력**
 ![](https://velog.velcdn.com/images/ghkdehs/post/e3372d59-6ff3-4f01-aaf0-48643d0415f4/image.gif)
 
 ```
@@ -104,12 +104,12 @@ button.addEventListener("click", () => {
 
 ### Backend
 
-**1. 모드별 대화 히스토리 관리**
+**1. 대화 히스토리 관리**
 ```
 // ChatBotService.java
 private final Map<String, List<Map<String, String>>> conversationHistories = new HashMap<>();
 ```
-모드별로 대화를 누적 저장해서 GPT가 이전 맥락을 기억하며 응답하도록 했습니다.
+대화를 누적 저장해서 GPT가 이전 맥락을 기억하며 응답하도록 했습니다. 또한 각 모드별로 해당 기능이 적용될 수 있도록 했습니다.
 
 **2. GPT 요청 및 응답 처리**
 ```
@@ -118,7 +118,7 @@ requestBody.put("messages", history); // 누적 대화 전송
 HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
 ResponseEntity<Map> response = restTemplate.exchange(API_URL, HttpMethod.POST, request, Map.class);
 ```
-누적된 메시지 기록과 함께 GPT API로 요청을 보내고, 받은 응답에서 content만 추출해 사용자에게 반환하도록 구현했습니다.
+프론트로 부터 전달받은 메시지를 GPT가 읽을 수 있는 구조로 변환 후 API에 전달한 다음, 받은 응답에서 content만 추출해 사용자에게 반환하도록 구현했습니다. (서버 -> 클라이언트)
 
 **3. 모드 변경 시 서버 측 대화 초기화**
 ```
