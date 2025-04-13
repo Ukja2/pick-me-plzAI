@@ -107,7 +107,8 @@ button.addEventListener("click", () => {
 ### Backend
 
 
-**1. Front의 사용자 입력 데이터 JSON 구조 변환 후 요청처리 및 응답데이터 파싱 **
+**1. Front의 사용자 입력 데이터 JSON 구조 변환 후 요청처리 및 응답데이터 파싱**
+
 ```
 // ChatBotService.java
 requestBody.put("messages", history); // 누적 대화 전송
