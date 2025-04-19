@@ -40,7 +40,7 @@ AI의 도움으로 자기소개서를 더 쉽게, 더 똑똑하게 작성할 수
       </td>
       <td align="center">
         <img alt="Java" src="https://img.shields.io/badge/Java-007396.svg?&style=flat&logo=Java&logoColor=white"/><br/>
-        <img alt="Spring Boot" src="https://img.shields.io/badge/Spring Boot-6DB33F.svg?&style=flat&logo=Spring Boot&logoColor=white"/>
+        <img alt="Spring Boot" src="https://img.shields.io/badge/Spring%20Boot-6DB33F.svg?&style=flat&logo=Spring%20Boot&logoColor=white"/><br/>
       </td>
       <td align="center">
         <img alt="OpenAI" src="https://img.shields.io/badge/OpenAI-412991.svg?&style=flat&logo=OpenAI&logoColor=white"/><br/>
